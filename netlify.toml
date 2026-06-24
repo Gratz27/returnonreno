@@ -1,0 +1,18 @@
+# Netlify build settings for the Next.js static export
+[build]
+  command = "npm run build"
+  publish = "out"
+
+[build.environment]
+  NODE_VERSION = "20"
+
+# Serverless functions (Resend email: opt-in + contact)
+[functions]
+  directory = "netlify/functions"
+  node_bundler = "esbuild"
+
+# ads.txt / robots are emitted from /public and app routes; no extra redirects needed.
+# Required env vars (Site settings → Environment variables):
+#   RESEND_API_KEY      – Resend API key (server-side only)
+#   RESEND_AUDIENCE_ID  – (optional) Resend audience for the newsletter list
+#   NEXT_PUBLIC_GA_ID   – (optional) GA4 measurement ID, e.g. G-XXXXXXXXXX
