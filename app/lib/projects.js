@@ -138,10 +138,11 @@ export const PROJECTS = [
     tip: "Owned systems add resale value; leased ones can complicate a sale. Buy, don't lease, if resale matters to you.",
   },
   {
-    slug: "inground-pool-installation", name: "Inground pool installation", baseUSD: 45000, roi: 40,
-    blurb: "Adding an inground swimming pool. A lifestyle project, not an investment — it recoups a low share of its cost and can even deter some buyers wary of upkeep, though it shines in hot-climate markets.",
+    slug: "inground-pool-installation", name: "Inground pool installation", baseUSD: 45000, roi: 55,
+    blurb: "Adding an inground swimming pool. A pool does add real resale value, but national data shows it typically recoups only about half its cost — so it's best thought of as a lifestyle purchase that adds some value, not an investment that pays for itself.",
     includes: ["Excavation and shell", "Plumbing, filtration and pump", "Decking and surround", "Safety fencing and finishing"],
-    tip: "Only worth it for your own enjoyment in a warm market. In cooler regions it can be a net negative at resale.",
+    tip: "Install a pool for how you'll enjoy it, not for profit. In a warm market it recoups more; in cooler climates with short swim seasons it recoups far less and can even deter buyers.",
+    roiNote: "Pools are the most climate-dependent project here. In warm 'Sun Belt' markets (and much of Australia) a well-kept pool can recoup 65%+ and add 7–10% to home value; in cold climates it often recoups far less and can be a net negative. The figure shown is a national average — adjust your expectations to your local market.",
   },
   {
     slug: "garage-conversion", name: "Garage conversion to living space", baseUSD: 22000, roi: 70,

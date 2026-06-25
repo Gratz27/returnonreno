@@ -104,6 +104,11 @@ export default function Calculator({ initialProject = "minor-kitchen-remodel" })
             <div className="v">{r.net < 0 ? "+" + fmtK(-r.net, cur) : fmtK(r.net, cur)}</div>
           </div>
         </div>
+        <div className="sub" style={{ marginTop: 6, opacity: 0.85, fontSize: 12.5 }}>
+          {r.net < 0
+            ? "“Net value gain” = resale value added beyond what the project costs."
+            : "“Net cost after resale” = cost − resale value added — the part you don't recoup at sale, not a loss."}
+        </div>
         <div className="verdict">{verdict}</div>
         {r.net < 0 && (
           <div className="sub" style={{ marginTop: 8 }}>

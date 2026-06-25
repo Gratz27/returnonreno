@@ -65,6 +65,12 @@ export default function ProjectCostPage({ params }) {
 
       <p>{p.blurb}</p>
 
+      {p.roiNote && (
+        <p className="note" style={{ borderLeft: "4px solid var(--accent)" }}>
+          <strong>Worth knowing:</strong> {p.roiNote}
+        </p>
+      )}
+
       <div className="tablecard">
         <table>
           <tbody>
@@ -76,6 +82,11 @@ export default function ProjectCostPage({ params }) {
           </tbody>
         </table>
       </div>
+      <p className="hint" style={{ color: "var(--muted)", fontSize: 13, marginTop: -6 }}>
+        {net < 0
+          ? "“Net value gain” means this project typically adds more resale value than it costs."
+          : "“Net cost after resale” = project cost − resale value added. It's the part you don't recoup at sale, not a loss — most renovations cost more than they return, with the difference buying you the use and enjoyment of the upgrade."}
+      </p>
 
       <h2>What a {p.name.toLowerCase()} typically includes</h2>
       <ul>
