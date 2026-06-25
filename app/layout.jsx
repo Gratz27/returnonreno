@@ -14,8 +14,11 @@ export const metadata = {
   },
   description:
     "Free calculator: estimate what a renovation costs and how much you get back at resale. Compare 15+ projects by ROI.",
-  // Icons are auto-generated from app/icon.svg, app/apple-icon.png, app/favicon.ico
-  // (Next emits hashed URLs that bust browser favicon caches).
+  // ?v=2 query busts the cached old favicon without changing the file path.
+  icons: {
+    icon: [{ url: "/favicon.svg?v=2", type: "image/svg+xml" }, { url: "/favicon.ico?v=2" }],
+    apple: "/apple-touch-icon.png?v=2",
+  },
   openGraph: {
     type: "website",
     siteName: "Return on Reno",
