@@ -46,7 +46,9 @@ export default function Home() {
         <p><b>Cost benchmarks</b> come from national &ldquo;Cost vs. Value&rdquo; remodeling averages, adjusted by finish
           level, project scope, and region. They are planning estimates, not quotes.</p>
         <p><b>Cost recouped (ROI)</b> is the share of project cost typically reflected in a home&apos;s resale value.
-          Smaller exterior and cosmetic upgrades recoup the most; large additions and ultra-luxury work recoup the least.</p>
+          Smaller exterior and cosmetic upgrades recoup the most; large additions and ultra-luxury work recoup the least.
+          A few projects (like garage and entry doors) recoup over 100% — national Cost-vs-Value data shows they often add
+          more resale value than they cost.</p>
         <p style={{ margin: 0 }}><b>Net cost after resale</b> = estimated cost − estimated resale value added. Always confirm
           with a local agent and 2–3 contractor quotes. Last reviewed June 2026.</p>
       </div>

@@ -35,7 +35,8 @@ export default function Calculator({ initialProject = "minor-kitchen-remodel" })
   }, [tier, cur]);
 
   let verdict;
-  if (r.roi >= 90) verdict = "💚 Excellent return — this upgrade nearly pays for itself at resale.";
+  if (r.roi >= 100) verdict = "💚 Pays for itself — national Cost-vs-Value data shows this typically adds more resale value than it costs.";
+  else if (r.roi >= 90) verdict = "💚 Excellent return — this upgrade nearly pays for itself at resale.";
   else if (r.roi >= 70) verdict = "✅ Strong return — most of your spend comes back in added value.";
   else if (r.roi >= 50) verdict = "🟡 Moderate return — about half comes back; the rest buys enjoyment.";
   else verdict = "🔶 Lifestyle upgrade — low resale payback, so do it for how you'll live, not for profit.";
@@ -98,9 +99,17 @@ export default function Calculator({ initialProject = "minor-kitchen-remodel" })
         <div className="metrics">
           <div className="metric"><div className="k">Resale value added</div><div className="v">{fmtK(r.valueAdded, cur)}</div></div>
           <div className="metric"><div className="k">Cost recouped (ROI)</div><div className="v">{Math.round(r.roi)}%</div></div>
-          <div className="metric"><div className="k">Net cost after resale</div><div className="v">{r.net < 0 ? "+" + fmtK(-r.net, cur) + " gain" : fmtK(r.net, cur)}</div></div>
+          <div className="metric">
+            <div className="k">{r.net < 0 ? "Net value gain" : "Net cost after resale"}</div>
+            <div className="v">{r.net < 0 ? "+" + fmtK(-r.net, cur) : fmtK(r.net, cur)}</div>
+          </div>
         </div>
         <div className="verdict">{verdict}</div>
+        {r.net < 0 && (
+          <div className="sub" style={{ marginTop: 8 }}>
+            ℹ️ A recoup above 100% means this project typically adds more resale value than it costs, based on national Cost-vs-Value data. Local results vary — always confirm with quotes.
+          </div>
+        )}
         <div className="actions">
           <a className="btn btn-white" href={`/cost/${project.slug}/`}>Read the full {project.name.toLowerCase()} cost guide →</a>
         </div>

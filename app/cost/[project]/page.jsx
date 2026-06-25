@@ -72,7 +72,7 @@ export default function ProjectCostPage({ params }) {
             <tr><td>Typical range</td><td className="num">{fmtMoney(cost * 0.85)} – {fmtMoney(cost * 1.15)}</td></tr>
             <tr><td>Resale value added</td><td className="num">{fmtMoney(valueAdded)}</td></tr>
             <tr><td>Cost recouped (ROI)</td><td className="num"><span className={`pill ${roiPill}`}>{Math.round(roi)}%</span></td></tr>
-            <tr><td>Net cost after resale</td><td className="num">{net < 0 ? "+" + fmtMoney(-net) + " gain" : fmtMoney(net)}</td></tr>
+            <tr><td>{net < 0 ? "Net value gain after resale" : "Net cost after resale"}</td><td className="num">{net < 0 ? "+" + fmtMoney(-net) : fmtMoney(net)}</td></tr>
           </tbody>
         </table>
       </div>
@@ -111,8 +111,9 @@ export default function ProjectCostPage({ params }) {
       <h2>Methodology</h2>
       <p className="note" style={{ color: "var(--muted)" }}>
         Figures are national midrange &ldquo;Cost vs. Value&rdquo; averages adjusted for finish, scope and region. They are
-        planning estimates, not quotes or appraisals, and lean toward US/UK/Canada/Australia mid-markets. Reviewed June 2026.
-        This is general information, not financial or real-estate advice.
+        planning estimates, not quotes or appraisals, and lean toward US/UK/Canada/Australia mid-markets.
+        {roi >= 100 && " A recoup above 100% means national data shows this project typically adds more resale value than it costs — it's a genuine figure, but local results vary, so confirm with quotes."}
+        {" "}Reviewed June 2026. This is general information, not financial or real-estate advice.
       </p>
 
       <div className="cta">
