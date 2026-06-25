@@ -8,7 +8,7 @@
 **Return on Reno** (returnonreno.com) is a free renovation **cost + resale-ROI calculator**. The differentiator vs. other cost calculators: it shows not just what a project costs, but how much of that you recoup at resale (and the net cost / value gain). Built to scale to PetCost-style page volume via programmatic SEO.
 
 - **Live site:** https://returnonreno.com
-- **Status:** Live, auto-deploying, monetisation + email funnel wired. Not yet submitted to Search Console / AdSense review.
+- **Status:** Live, auto-deploying, monetisation + email funnel wired. Submitted to Google Search Console (domain verified, sitemap submitted) and AdSense (site added, ads.txt live) — awaiting Google indexing/review.
 - **Owner:** Darren (Gratz27)
 
 ## 2. Stack & architecture
@@ -88,14 +88,15 @@ git add -A && git commit -m "..." && git push
 - `docs/website-opportunity-strategy.md` — the original strategy/opportunity report
 
 ## 8. Known open items (as of 25 Jun 2026)
-- [ ] Submit to **Google Search Console** (domain property, submit sitemap, request indexing)
-- [ ] Add site in **AdSense** for review
+- [x] **Google Search Console** — domain property verified (DNS TXT), `sitemap.xml` submitted (560 URLs). ⏳ Awaiting Google to crawl/index over coming weeks — monitor Coverage. *(Note: submit the sitemap path as `sitemap.xml`, not the root URL.)*
+- [x] **AdSense** — site `returnonreno.com` added; `ads.txt` live with publisher line `pub-3275113356221002`. ⏳ Awaiting Google review (days–2 weeks) + ads.txt crawl → "Authorized".
 - [ ] Confirm `NEXT_PUBLIC_GA_ID` is set (GA4 live)
 - [ ] Email warm-up; later tighten DMARC to `p=quarantine`
 - [ ] Replace placeholder affiliate/lead offer with a real, disclosed one
 - [ ] Grow content (more cities, projects, guides) — see ROADMAP
 
 ## 9. Changelog (high level)
+- **25 Jun 2026** — Submitted to Google Search Console (domain verified via DNS TXT, sitemap.xml submitted) and AdSense (site added; ads.txt confirmed live). Awaiting Google indexing/review. Added project hub (PROJECT/MAINTENANCE/ROADMAP) + 4 scheduled maintenance tasks.
 - **25 Jun 2026** — Refined pool ROI to NAR ~55% + climate note; clarified "net cost after resale" wording site-wide.
 - **25 Jun 2026** — Wired forms to Resend (functions); favicon cache-bust fix; built budget worksheet; relabelled >100% ROI as "net value gain".
 - **24 Jun 2026** — AdSense Auto Ads + GA4 + ads.txt; removed ad placeholders; OG fixes.
