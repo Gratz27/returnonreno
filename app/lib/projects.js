@@ -150,6 +150,34 @@ export const PROJECTS = [
     includes: ["Insulation, framing and drywall", "Flooring, heating and lighting", "Windows and door changes", "Electrical and finishing"],
     tip: "Check what your market values more — extra living space or a garage. In car-dependent areas, keeping the garage can be worth more.",
   },
+  {
+    slug: "fence-installation", name: "Fence installation", baseUSD: 4500, roi: 50,
+    blurb: "Installing a new perimeter or yard fence — typically wood or vinyl. It adds privacy, security and a defined yard that families and pet owners value, but as a resale play it returns only a moderate share of its cost.",
+    includes: ["Layout, post holes and footings", "Wood, vinyl or metal fence panels", "Gates and hardware", "Staining or sealing (wood)", "Old-fence removal and disposal"],
+    tip: "Vinyl and cedar tend to recoup the most because buyers value low upkeep; a tidy, well-maintained fence matters more to value than the material itself.",
+    roiNote: "Fence ROI is wide — roughly 30–70% of cost depending on material, neighbourhood norms and condition (national midrange ≈ 50%). It returns more in family- and pet-oriented suburbs and where fenced yards are expected, and less where they aren't the norm. A new fence rarely pays for itself, but a sagging or rotten one can actively cost you at sale.",
+  },
+  {
+    slug: "driveway-replacement", name: "Driveway replacement (concrete)", baseUSD: 7000, roi: 65,
+    blurb: "Tearing out and repouring a worn or cracked driveway, usually in concrete (asphalt is cheaper but shorter-lived). More a curb-appeal-and-condition fix than a value-add — a cracked driveway is a visible negotiating lever for buyers, so replacing it mainly protects your price.",
+    includes: ["Removal and disposal of the old surface", "Sub-base grading and preparation", "New concrete (or asphalt) pour", "Edging, jointing and finishing", "Curing and sealing"],
+    tip: "If the existing driveway is only stained or lightly cracked, resurfacing or sealing is far more cost-effective than a full replacement — fix before you rip out.",
+    roiNote: "Industry estimates put driveway ROI at roughly 50–80% of cost (national midrange ≈ 65%). Concrete costs more upfront than asphalt but lasts decades with little upkeep. Most of the value is in removing a buyer objection rather than commanding a premium.",
+  },
+  {
+    slug: "sunroom-addition", name: "Sunroom addition", baseUSD: 50000, roi: 50,
+    blurb: "Adding a glassed-in sunroom or three/four-season room to extend living space toward the garden. It's a lifestyle upgrade buyers enjoy, but a national average recoups only about half its cost — a four-season, fully insulated room returns more than a three-season or screened one.",
+    includes: ["Foundation or reinforced slab", "Framing and large glazed walls/roof", "Insulation and climate control (four-season)", "Flooring, electrical and lighting", "Permits and professional fees"],
+    tip: "A four-season room that ties into the home's heating and finishes reads as real living space and returns more; a three-season or screened room is cheaper but recoups noticeably less.",
+    roiNote: "National data puts sunroom recovery at roughly 49–55% of cost (midrange ≈ 50%), though it varies widely — four-season rooms outperform three-season and screened ones. Like a pool, treat it as a lifestyle purchase that adds some value, not an investment that pays for itself.",
+  },
+  {
+    slug: "ev-charger-installation", name: "EV charger installation (Level 2)", baseUSD: 1800, roi: 100,
+    blurb: "Installing a home Level 2 (240V) EV charging point in the garage or driveway. Cheap relative to most projects and increasingly expected by EV-owning buyers — on average it roughly recoups its cost, and it can differentiate your listing where electric vehicles are common.",
+    includes: ["240V circuit and dedicated breaker", "Level 2 charger / wall connector", "Conduit and wiring run", "Permit and electrical inspection", "Panel-capacity check (upgrade if needed)"],
+    tip: "Mount the hardwired unit and keep the install tidy and inspected — a clean, permitted Level 2 point reads as a feature; a dangling portable cord does not. Factor the 30% federal tax credit into your real net cost.",
+    roiNote: "Resale impact is highly market-dependent: in EV-heavy states (CA, WA, CO, parts of NY) the value boost is most pronounced, while in low-EV areas it mainly differentiates the listing rather than lifting price. A typical $800–$2,000 install can recoup most or all of its cost on average, but a panel upgrade ($1,500–$4,000 extra) changes that math — the figure shown excludes major panel work.",
+  },
 ];
 
 export const TIERS = {
