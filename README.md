@@ -1,5 +1,7 @@
 # Return on Reno — Next.js site
 
+> 📌 **Start with [`PROJECT.md`](./PROJECT.md)** — the project hub (status, access points, how to work on it). See also [`docs/MAINTENANCE.md`](./docs/MAINTENANCE.md) and [`docs/ROADMAP.md`](./docs/ROADMAP.md).
+
 A Next.js (App Router) version of Return on Reno, built to scale to hundreds of pages the way PetCost does. The calculator is a React component; cost pages are **generated programmatically** from data files. Output is a fully static site (`output: 'export'`) that deploys to Netlify.
 
 ## What's here
