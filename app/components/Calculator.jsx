@@ -3,6 +3,7 @@
 import { useState, useMemo, useEffect, useRef } from "react";
 import { PROJECTS, TIERS, calc } from "../lib/projects";
 import { CURRENCIES } from "../lib/regions";
+import ProjectIcon from "./ProjectIcon";
 
 function fmtK(usd, c) {
   let v = usd * c.fx;
@@ -49,6 +50,7 @@ export default function Calculator({ initialProject = "minor-kitchen-remodel" })
   const [scope, setScope] = useState(1);
   const [homeValue, setHomeValue] = useState("");
   const [showAll, setShowAll] = useState(false);
+  const [search, setSearch] = useState("");
 
   const cur = CURRENCIES.find((c) => c.code === currencyCode);
   const project = PROJECTS.find((p) => p.slug === projectId);
@@ -60,6 +62,7 @@ export default function Calculator({ initialProject = "minor-kitchen-remodel" })
   );
 
   const animCost = useCountUp(r.cost);
+  const animRoi = useCountUp(r.roi);
   const t = tierOf(r.roi);
   const v = verdictFor(r.roi);
   const meterW = Math.min(Math.round(r.roi), 100);
@@ -69,29 +72,36 @@ export default function Calculator({ initialProject = "minor-kitchen-remodel" })
   const hv = parseFloat(homeValue);
   const hvNote = !isNaN(hv) && hv > 0 ? ` That's about ${Math.round((r.cost / hv) * 100)}% of your home's value.` : "";
 
+  const q = search.trim().toLowerCase();
+  const picks = q ? PROJECTS.filter((p) => p.name.toLowerCase().includes(q)) : PROJECTS;
+
   return (
     <>
       <section className="card" id="calc">
-        <div className="grid">
-          <div>
-            <label htmlFor="project">Project type</label>
-            <select id="project" value={projectId} onChange={(e) => setProjectId(e.target.value)}>
-              {PROJECTS.map((p) => (
-                <option key={p.slug} value={p.slug}>{p.name}</option>
-              ))}
-            </select>
-          </div>
-          <div>
-            <label htmlFor="currency">Currency &amp; region <span className="hint">(adjusts benchmark costs)</span></label>
-            <select id="currency" value={currencyCode} onChange={(e) => setCurrencyCode(e.target.value)}>
-              {CURRENCIES.map((c) => (
-                <option key={c.code} value={c.code}>{c.label}</option>
-              ))}
-            </select>
-          </div>
+        <label>Choose a project</label>
+        <input type="search" className="picker-search" placeholder="Search projects…" value={search}
+          onChange={(e) => setSearch(e.target.value)} aria-label="Search projects" />
+        <div className="picker-grid" role="listbox" aria-label="Project">
+          {picks.map((p) => (
+            <button key={p.slug} type="button" role="option" aria-selected={p.slug === projectId}
+              className={`chip${p.slug === projectId ? " on" : ""}`} onClick={() => setProjectId(p.slug)}>
+              <span className="chip-ic"><ProjectIcon slug={p.slug} size={18} /></span>
+              <span className="chip-nm">{p.name}</span>
+            </button>
+          ))}
+          {picks.length === 0 && <div className="sub" style={{ padding: "8px 4px" }}>No projects match “{search}”.</div>}
         </div>
 
-        <div style={{ marginTop: 14 }}>
+        <div style={{ marginTop: 16 }}>
+          <label htmlFor="currency">Currency &amp; region <span className="hint">(adjusts benchmark costs)</span></label>
+          <select id="currency" value={currencyCode} onChange={(e) => setCurrencyCode(e.target.value)}>
+            {CURRENCIES.map((c) => (
+              <option key={c.code} value={c.code}>{c.label}</option>
+            ))}
+          </select>
+        </div>
+
+        <div style={{ marginTop: 16 }}>
           <label>Quality / finish level</label>
           <div className="seg" role="group" aria-label="Quality level">
             {Object.entries(TIERS).map(([key, tt]) => (
@@ -118,7 +128,7 @@ export default function Calculator({ initialProject = "minor-kitchen-remodel" })
         </div>
       </section>
 
-      <section className="result" aria-live="polite">
+      <section className="result reveal-in" aria-live="polite">
         <div className="label">Estimated cost</div>
         <div className="cost">{fmtK(animCost, cur)}</div>
         <div className="range">Typical range {fmtK(r.cost * 0.85, cur)} – {fmtK(r.cost * 1.15, cur)}{hvNote}</div>
@@ -127,7 +137,7 @@ export default function Calculator({ initialProject = "minor-kitchen-remodel" })
         <div className="meter">
           <div className="meter-top">
             <span className="k">Cost recouped at resale</span>
-            <span className="pct">{Math.round(r.roi)}%</span>
+            <span className="pct">{Math.round(animRoi)}%</span>
           </div>
           <div className="meter-track">
             <div className={`meter-fill mf-${t}`} style={{ width: `${meterW}%` }} />
@@ -158,7 +168,7 @@ export default function Calculator({ initialProject = "minor-kitchen-remodel" })
 
       <h2 className="sec">How it compares</h2>
       <p className="lead">Every project ranked by how much of its cost you recoup at resale, at your settings. Your pick is highlighted.</p>
-      <div className="roi-list">
+      <div className="roi-list reveal-in">
         {rows.map((row) => {
           const rt = tierOf(row.roi);
           const w = Math.round((row.roi / maxRoi) * 100);
@@ -180,6 +190,14 @@ export default function Calculator({ initialProject = "minor-kitchen-remodel" })
           <span><span className="dot" style={{ background: "var(--roi-mid)" }} /> moderate</span>
           <span><span className="dot" style={{ background: "var(--roi-low)" }} /> low payback</span>
         </div>
+      </div>
+
+      <div className="sticky-result">
+        <div className="sr-left">
+          <div className="sr-cost">{fmtK(r.cost, cur)}</div>
+          <div className="sr-sub">{Math.round(r.roi)}% recouped · {project.name}</div>
+        </div>
+        <a className="btn btn-primary sr-btn" href={`/cost/${project.slug}/`}>Full guide →</a>
       </div>
     </>
   );
