@@ -27,7 +27,7 @@ export default function Home() {
 
       {/* AdSense Auto Ads (loaded in layout) place units automatically — no manual ad slots needed. */}
 
-      <Calculator initialProject="minor-kitchen-remodel" />
+      <Calculator initialProject="minor-kitchen-remodel" shareable />
 
       <section className="optin" id="optin">
         <h3>Get your free Renovation Budget Worksheet</h3>
