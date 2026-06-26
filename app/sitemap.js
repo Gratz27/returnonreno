@@ -6,7 +6,9 @@ const BASE = "https://returnonreno.com";
 // Auto-generates sitemap.xml at build covering every static + programmatic page.
 export default function sitemap() {
   const staticPages = [
-    "", "cost", "guides/best-home-improvements-roi",
+    "", "cost",
+    "guides", "guides/best-home-improvements-roi", "guides/renovation-roi-index",
+    "guides/kitchen-vs-bathroom-roi", "guides/does-a-pool-add-value", "guides/renovate-to-sell-checklist",
     "about", "contact", "privacy", "terms", "affiliate-disclosure",
   ].map((path) => ({
     url: `${BASE}/${path ? path + "/" : ""}`,

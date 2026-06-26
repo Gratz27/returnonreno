@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Renovation ROI Calculator — Return on Reno</title>
+<style>
+  :root{--ink:#16241e;--muted:#5c6b66;--line:#e7ede9;--soft:#f0f4f1;--teal:#0f8a6a;--teal-d:#0b6b52;--teal-s:#e6f4ef;
+    --hi:#1f9e6f;--mid:#cf8a2c;--lo:#cf5b3f;--hi-s:#e3f4ec;--mid-s:#f8efda;--lo-s:#f8e6df}
+  *{box-sizing:border-box}
+  body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;color:var(--ink);background:#fff;padding:16px;line-height:1.5}
+  .ctrl{margin-bottom:12px}
+  label{display:block;font-size:12px;font-weight:600;margin-bottom:5px}
+  select{width:100%;padding:10px 11px;border:1px solid var(--line);border-radius:10px;font-size:14px;background:#fff;color:var(--ink)}
+  .seg{display:flex;gap:5px;background:var(--soft);padding:4px;border-radius:11px}
+  .seg button{flex:1;border:0;background:transparent;padding:8px 4px;border-radius:8px;font-size:13px;font-weight:600;color:var(--muted);cursor:pointer}
+  .seg button.on{background:#fff;color:var(--teal-d);box-shadow:0 1px 2px rgba(0,0,0,.08)}
+  .res{border:1px solid var(--line);border-radius:16px;padding:18px;margin-top:14px;position:relative;overflow:hidden}
+  .res::before{content:"";position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,var(--teal),var(--hi))}
+  .lab{font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:#8a958f;font-weight:600}
+  .cost{font-size:32px;font-weight:700;letter-spacing:-1px;margin:2px 0;font-variant-numeric:tabular-nums}
+  .pill{display:inline-block;font-size:12px;font-weight:600;padding:5px 11px;border-radius:999px;margin-top:6px}
+  .meter{margin-top:14px}
+  .mt{display:flex;justify-content:space-between;font-size:12px;color:var(--muted);margin-bottom:6px}
+  .mt b{color:var(--ink);font-size:16px}
+  .track{height:12px;background:var(--soft);border-radius:999px;overflow:hidden}
+  .fill{height:100%;border-radius:999px;transition:width .5s ease}
+  .stats{display:flex;gap:10px;margin-top:14px}
+  .stats div{flex:1;background:#fbfaf7;border-radius:10px;padding:9px 11px}
+  .stats .k{font-size:10.5px;text-transform:uppercase;letter-spacing:.05em;color:#8a958f}
+  .stats .v{font-size:15px;font-weight:600;margin-top:1px;font-variant-numeric:tabular-nums}
+  .cap{font-size:12px;color:var(--muted);margin-top:10px}
+  .cta{display:inline-block;margin-top:12px;background:var(--teal);color:#fff;text-decoration:none;font-size:13px;font-weight:600;padding:9px 14px;border-radius:9px}
+  .pb{display:flex;align-items:center;gap:7px;margin-top:14px;font-size:12px;color:var(--muted)}
+  .pb a{color:var(--teal-d);font-weight:600;text-decoration:none}
+  .logo{width:22px;height:22px;border-radius:7px;background:linear-gradient(135deg,#13a37e,var(--teal-d));display:flex;align-items:center;justify-content:center}
+</style>
+</head>
+<body>
+  <div class="ctrl">
+    <label for="proj">Project</label>
+    <select id="proj"></select>
+  </div>
+  <div class="ctrl">
+    <label>Finish level</label>
+    <div class="seg" id="tier">
+      <button data-t="budget">Budget</button>
+      <button data-t="midrange" class="on">Midrange</button>
+      <button data-t="upscale">Upscale</button>
+    </div>
+  </div>
+  <div class="ctrl">
+    <label for="cur">Currency</label>
+    <select id="cur"></select>
+  </div>
+
+  <div class="res">
+    <div class="lab">Estimated cost</div>
+    <div class="cost" id="cost">—</div>
+    <span class="pill" id="pill"></span>
+    <div class="meter">
+      <div class="mt"><span>Cost recouped at resale</span><b id="pct">—</b></div>
+      <div class="track"><div class="fill" id="fill"></div></div>
+    </div>
+    <div class="stats">
+      <div><div class="k">Value added</div><div class="v" id="va">—</div></div>
+      <div><div class="k" id="netk">Net cost</div><div class="v" id="net">—</div></div>
+    </div>
+    <div class="cap" id="cap"></div>
+    <a class="cta" id="cta" target="_blank" rel="noopener">See the full guide →</a>
+  </div>
+
+  <div class="pb">
+    <span class="logo"><svg width="14" height="14" viewBox="0 0 64 64" fill="none" stroke="#fff" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"><path d="M16 33 L16 47 L34 47 L34 33"/><path d="M12 35 L25 24 L34 31 L52 16"/><path d="M43 15 L53 15 L53 25"/></svg></span>
+    <span>Powered by <a href="https://returnonreno.com/" target="_blank" rel="noopener">Return on Reno</a></span>
+  </div>
+
+<script>
+var PROJECTS=[{"s":"minor-kitchen-remodel","n":"Minor kitchen remodel","b":27000,"r":85},{"s":"major-kitchen-remodel","n":"Major kitchen remodel","b":80000,"r":50},{"s":"bathroom-remodel","n":"Bathroom remodel","b":25000,"r":74},{"s":"bathroom-addition","n":"Bathroom addition","b":60000,"r":50},{"s":"primary-suite-addition","n":"Primary (master) suite addition","b":165000,"r":48},{"s":"wood-deck-addition","n":"Wood deck addition","b":17000,"r":83},{"s":"composite-deck-addition","n":"Composite deck addition","b":24000,"r":68},{"s":"garage-door-replacement","n":"Garage door replacement","b":4500,"r":160},{"s":"entry-door-replacement","n":"Entry door replacement (steel)","b":2400,"r":150},{"s":"vinyl-window-replacement","n":"Vinyl window replacement","b":21000,"r":67},{"s":"vinyl-siding-replacement","n":"Vinyl siding replacement","b":19000,"r":80},{"s":"manufactured-stone-veneer","n":"Manufactured stone veneer","b":11000,"r":150},{"s":"asphalt-roof-replacement","n":"Asphalt roof replacement","b":30000,"r":56},{"s":"basement-loft-conversion","n":"Basement / loft conversion","b":70000,"r":70},{"s":"whole-home-cosmetic-refresh","n":"Whole-home cosmetic refresh","b":40000,"r":75},{"s":"interior-repaint","n":"Interior repaint (whole home)","b":5000,"r":80},{"s":"hardwood-floor-refinishing","n":"Hardwood floor refinishing","b":3000,"r":100},{"s":"new-hardwood-flooring","n":"New hardwood flooring","b":6000,"r":85},{"s":"curb-appeal-landscaping","n":"Curb-appeal landscaping","b":8000,"r":90},{"s":"attic-insulation","n":"Attic insulation (fiberglass)","b":2500,"r":110},{"s":"hvac-replacement","n":"HVAC system replacement","b":10000,"r":60},{"s":"solar-panel-installation","n":"Solar panel installation","b":25000,"r":65},{"s":"inground-pool-installation","n":"Inground pool installation","b":45000,"r":55},{"s":"garage-conversion","n":"Garage conversion to living space","b":22000,"r":70},{"s":"fence-installation","n":"Fence installation","b":4500,"r":50},{"s":"driveway-replacement","n":"Driveway replacement (concrete)","b":7000,"r":65},{"s":"sunroom-addition","n":"Sunroom addition","b":50000,"r":50},{"s":"ev-charger-installation","n":"EV charger installation (Level 2)","b":1800,"r":100}];
+var TIERS={budget:{m:0.6,a:6},midrange:{m:1,a:0},upscale:{m:1.9,a:-13}};
+var CUR=[{c:"USD",l:"$ USD",sym:"$",fx:1,rg:1},{c:"GBP",l:"£ GBP",sym:"£",fx:0.79,rg:0.95},{c:"EUR",l:"€ EUR",sym:"€",fx:0.92,rg:0.95},{c:"CAD",l:"$ CAD",sym:"C$",fx:1.37,rg:0.9},{c:"AUD",l:"$ AUD",sym:"A$",fx:1.52,rg:1.05},{c:"NZD",l:"$ NZD",sym:"NZ$",fx:1.65,rg:1.05}];
+var tier="midrange";
+var ps=document.getElementById("proj"); PROJECTS.forEach(function(p,i){var o=document.createElement("option");o.value=i;o.textContent=p.n;ps.appendChild(o);});
+var cs=document.getElementById("cur"); CUR.forEach(function(c,i){var o=document.createElement("option");o.value=i;o.textContent=c.l;cs.appendChild(o);});
+function fmt(usd,c){var v=Math.round(usd*c.fx/100)*100;return c.sym+v.toLocaleString("en-US");}
+function tierCls(r){return r>=80?"hi":r>=55?"mid":"lo";}
+function verdict(r){return r>=100?"Pays for itself":r>=80?"Strong return":r>=55?"Moderate return":"Lifestyle upgrade";}
+function vtext(r){return r>=100?"Typically adds more resale value than it costs.":r>=80?"Most of your spend comes back in added value.":r>=55?"About half comes back; the rest buys enjoyment.":"Low resale payback — do it for how you'll live.";}
+function render(){
+  var p=PROJECTS[+ps.value], c=CUR[+cs.value], t=TIERS[tier];
+  var cost=p.b*t.m*c.rg;
+  var roi=Math.max(8,Math.min(160,p.r+t.a));
+  var va=cost*roi/100, net=cost-va;
+  var cls=tierCls(roi);
+  var col={hi:"var(--hi)",mid:"var(--mid)",lo:"var(--lo)"}[cls];
+  var bg={hi:"var(--hi-s)",mid:"var(--mid-s)",lo:"var(--lo-s)"}[cls];
+  document.getElementById("cost").textContent=fmt(cost,c);
+  var pill=document.getElementById("pill"); pill.textContent=verdict(roi); pill.style.background=bg; pill.style.color=col;
+  document.getElementById("pct").textContent=Math.round(roi)+"%";
+  var fill=document.getElementById("fill"); fill.style.width=Math.min(Math.round(roi),100)+"%"; fill.style.background=col;
+  document.getElementById("va").textContent=fmt(va,c);
+  document.getElementById("netk").textContent=net<0?"Net value gain":"Net cost";
+  document.getElementById("net").textContent=net<0?"+"+fmt(-net,c):fmt(net,c);
+  document.getElementById("cap").textContent=vtext(roi);
+  document.getElementById("cta").href="https://returnonreno.com/cost/"+p.s+"/";
+}
+ps.onchange=render; cs.onchange=render;
+document.querySelectorAll("#tier button").forEach(function(b){b.onclick=function(){document.querySelectorAll("#tier button").forEach(function(x){x.classList.remove("on");});b.classList.add("on");tier=b.getAttribute("data-t");render();};});
+render();
+</script>
+</body>
+</html>

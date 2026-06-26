@@ -26,10 +26,10 @@
 
 ## 3. The programmatic engine (how the site scales)
 Pages are generated from two data files — **edit data, not pages**:
-- `app/lib/projects.js` — the renovation projects (currently 24). Each has `slug, name, baseUSD, roi, blurb, includes[], tip`, and optional `roiNote`.
+- `app/lib/projects.js` — the renovation projects (28 and growing — the weekly content task adds more). Each has `slug, name, baseUSD, roi, blurb, includes[], tip`, and optional `roiNote`.
 - `app/lib/regions.js` — currencies + regions/cities (currently 22). Each has cost multiplier + a unique `blurb`.
 
-This generates: 24 project pages + (24 × 22 =) 528 region pages + guides/trust pages ≈ **560 pages**, plus the auto sitemap. Add one project or one city → new pages, league-table rows, and sitemap entries appear everywhere automatically.
+This generates: 24 project pages + (24 × 22 =) 528 region pages + guides/trust pages ≈ **600+ pages and growing**, plus the auto sitemap. Add one project or one city → new pages, league-table rows, and sitemap entries appear everywhere automatically.
 
 Routes:
 - `/` — home (hero + calculator)
@@ -97,6 +97,7 @@ git add -A && git commit -m "..." && git push
 - [ ] Grow content (more cities, projects, guides) — see ROADMAP
 
 ## 9. Changelog (high level)
+- **26 Jun 2026** — Competitor audit; Tier 1 calculator tools (compare/split-budget mode, custom-quote override, shareable links); Guides hub + 3 new guides + Renovation ROI Index data study; embeddable widget (/embed.html); nav adds Guides; project counts made dynamic.
 - **26 Jun 2026** — Visual redesign (see docs/DESIGN-AUDIT.md): Phase 1 warm palette + Fraunces/Inter type, result module + ROI bars, mobile collapses; Phase 2 icon-chip project picker, motion, sticky mobile bar; Phase 3 hero illustration, visual project-page heroes, country-grouped regional cost chips.
 - **25 Jun 2026** — Submitted to Google Search Console (domain verified via DNS TXT, sitemap.xml submitted) and AdSense (site added; ads.txt confirmed live). Awaiting Google indexing/review. Added project hub (PROJECT/MAINTENANCE/ROADMAP) + 4 scheduled maintenance tasks.
 - **25 Jun 2026** — Refined pool ROI to NAR ~55% + climate note; clarified "net cost after resale" wording site-wide.

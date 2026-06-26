@@ -16,7 +16,7 @@ export default function Header() {
         <nav className="top">
           <Link href="/">Calculator</Link>
           <Link href="/cost/">Project costs</Link>
-          <Link href="/guides/best-home-improvements-roi/">Best ROI projects</Link>
+          <Link href="/guides/">Guides</Link>
           <Link href="/about/">About</Link>
         </nav>
       </div>

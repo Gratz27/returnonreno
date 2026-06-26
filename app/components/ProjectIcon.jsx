@@ -25,6 +25,10 @@ const CAT = {
   "solar-panel-installation": "sun",
   "inground-pool-installation": "pool",
   "garage-conversion": "door",
+  "fence-installation": "deck",
+  "driveway-replacement": "floor",
+  "sunroom-addition": "window",
+  "ev-charger-installation": "flame",
 };
 
 const PATHS = {

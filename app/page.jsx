@@ -4,7 +4,7 @@ import HeroArt from "./components/HeroArt";
 export const metadata = {
   title: "Renovation Cost & ROI Calculator",
   description:
-    "Estimate what a home renovation costs and how much you get back at resale. Free, no sign-up — compare 24 projects by ROI.",
+    "Estimate what a home renovation costs and how much you get back at resale. Free, no sign-up — compare dozens of projects by ROI.",
   alternates: { canonical: "/" },
   openGraph: { url: "/" },
 };

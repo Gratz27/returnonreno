@@ -17,7 +17,7 @@ export const metadata = {
     template: "%s | Return on Reno",
   },
   description:
-    "Free calculator: estimate what a renovation costs and how much you get back at resale. Compare 15+ projects by ROI.",
+    "Free calculator: estimate what a renovation costs and how much you get back at resale. Compare every major renovation project by ROI.",
   // ?v=2 query busts the cached old favicon without changing the file path.
   icons: {
     icon: [{ url: "/favicon.svg?v=2", type: "image/svg+xml" }, { url: "/favicon.ico?v=2" }],

@@ -5,7 +5,7 @@ import { fmtMoney } from "../../lib/format";
 export const metadata = {
   title: "Which Home Improvements Add the Most Value in 2026?",
   description:
-    "A data-backed ranking of which home improvements add the most resale value in 2026 — and which quietly lose money. Compare 15 projects by ROI.",
+    "A data-backed ranking of which home improvements add the most resale value in 2026 — and which quietly lose money. Compare projects by ROI.",
   alternates: { canonical: "/guides/best-home-improvements-roi/" },
 };
 
@@ -36,7 +36,7 @@ export default function Article() {
         dreams about tend to return the <em>least</em> per dollar spent.</p>
 
       <p>That gap between cost and recovered value is the single most important number in any renovation decision. Below we
-        rank 15 common projects by how much of their cost typically comes back at resale. Every figure is reflected live in
+        rank the most common renovation projects by how much of their cost typically comes back at resale. Every figure is reflected live in
         our <Link href="/">free renovation cost &amp; ROI calculator</Link>.</p>
 
       <blockquote><strong>The one-line version:</strong> curb appeal and condition beat square footage and luxury. Buyers pay
@@ -83,7 +83,7 @@ export default function Article() {
 
       <div className="cta">
         <h3>See the numbers for your project</h3>
-        <p>Pick any of these 15 projects, set your finish level and region, and get an instant cost and ROI estimate.</p>
+        <p>Pick any project, set your finish level and region, and get an instant cost and ROI estimate.</p>
         <Link className="btn btn-white" href="/cost/">Browse project cost guides →</Link>
       </div>
 
