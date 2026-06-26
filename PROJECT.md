@@ -97,6 +97,7 @@ git add -A && git commit -m "..." && git push
 - [ ] Grow content (more cities, projects, guides) — see ROADMAP
 
 ## 9. Changelog (high level)
+- **26 Jun 2026** — Visual redesign (see docs/DESIGN-AUDIT.md): Phase 1 warm palette + Fraunces/Inter type, result module + ROI bars, mobile collapses; Phase 2 icon-chip project picker, motion, sticky mobile bar; Phase 3 hero illustration, visual project-page heroes, country-grouped regional cost chips.
 - **25 Jun 2026** — Submitted to Google Search Console (domain verified via DNS TXT, sitemap.xml submitted) and AdSense (site added; ads.txt confirmed live). Awaiting Google indexing/review. Added project hub (PROJECT/MAINTENANCE/ROADMAP) + 4 scheduled maintenance tasks.
 - **25 Jun 2026** — Refined pool ROI to NAR ~55% + climate note; clarified "net cost after resale" wording site-wide.
 - **25 Jun 2026** — Wired forms to Resend (functions); favicon cache-bust fix; built budget worksheet; relabelled >100% ROI as "net value gain".

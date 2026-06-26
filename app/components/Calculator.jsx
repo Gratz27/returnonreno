@@ -3,21 +3,13 @@
 import { useState, useMemo, useEffect, useRef } from "react";
 import { PROJECTS, TIERS, calc } from "../lib/projects";
 import { CURRENCIES } from "../lib/regions";
+import { tierOf, verdictFor } from "../lib/roi";
 import ProjectIcon from "./ProjectIcon";
 
 function fmtK(usd, c) {
   let v = usd * c.fx;
   v = Math.round(v / 100) * 100;
   return c.sym + v.toLocaleString("en-US");
-}
-function tierOf(roi) {
-  return roi >= 80 ? "high" : roi >= 55 ? "mid" : "low";
-}
-function verdictFor(roi) {
-  if (roi >= 100) return { pill: "Pays for itself", text: "National Cost-vs-Value data shows this typically adds more resale value than it costs." };
-  if (roi >= 80) return { pill: "Strong return", text: "Most of your spend comes back in added value at resale." };
-  if (roi >= 55) return { pill: "Moderate return", text: "About half comes back; the rest buys the use and enjoyment." };
-  return { pill: "Lifestyle upgrade", text: "Low resale payback — do it for how you'll live, not for profit." };
 }
 
 function useCountUp(target, duration = 550) {

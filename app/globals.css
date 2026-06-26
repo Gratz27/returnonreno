@@ -138,6 +138,27 @@ input[type=range]{flex:1;accent-color:var(--accent)}
   body{padding-bottom:72px}
 }
 
+/* home hero layout + art */
+.hero-wrap{display:flex;align-items:center;gap:30px}
+.hero-text{flex:1;min-width:0}
+.hero-art{flex:0 0 320px;max-width:42%}
+.hero-art-svg{width:100%;height:auto;display:block}
+@media(max-width:760px){.hero-wrap{display:block}.hero-art{display:none}}
+
+/* project page hero emblem */
+.proj-head{display:flex;align-items:center;gap:12px;margin-bottom:4px}
+.proj-emblem{width:46px;height:46px;border-radius:13px;background:var(--accent-soft);color:var(--accent-dark);display:flex;align-items:center;justify-content:center;flex:none}
+
+/* regional cost chips */
+.region-group{margin:14px 0}
+.region-country{font-size:12px;text-transform:uppercase;letter-spacing:.06em;color:var(--faint);font-weight:500;margin:0 0 8px}
+.region-chips{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+@media(max-width:620px){.region-chips{grid-template-columns:1fr}}
+.region-chip{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:11px 13px;border:1px solid var(--line);border-radius:var(--r-sm);background:var(--card);text-decoration:none;color:var(--ink);transition:.14s}
+.region-chip:hover{border-color:var(--accent);box-shadow:var(--shadow-sm)}
+.rc-city{font-size:14px}
+.rc-cost{font-size:14px;font-weight:500;color:var(--accent-dark);font-variant-numeric:tabular-nums;white-space:nowrap}
+
 /* details / collapses */
 details.disc-d{border:1px solid var(--line);border-radius:var(--r);background:var(--card);margin:14px 0;overflow:hidden}
 details.disc-d>summary{cursor:pointer;font-weight:500;font-size:14.5px;padding:14px 16px;list-style:none;display:flex;justify-content:space-between;align-items:center;color:var(--ink)}

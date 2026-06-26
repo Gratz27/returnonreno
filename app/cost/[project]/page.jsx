@@ -3,7 +3,9 @@ import { notFound } from "next/navigation";
 import { PROJECTS, getProject, calc } from "../../lib/projects";
 import { REGIONS } from "../../lib/regions";
 import { fmtMoney } from "../../lib/format";
+import { tierOf, verdictFor } from "../../lib/roi";
 import Calculator from "../../components/Calculator";
+import ProjectIcon from "../../components/ProjectIcon";
 
 // One static page per project at build time.
 export function generateStaticParams() {
@@ -27,7 +29,9 @@ export default function ProjectCostPage({ params }) {
   if (!p) notFound();
 
   const { cost, roi, valueAdded, net } = calc(p);
-  const roiPill = roi >= 80 ? "p-good" : roi >= 55 ? "p-mid" : "p-low";
+  const t = tierOf(roi);
+  const v = verdictFor(roi);
+  const meterW = Math.min(Math.round(roi), 100);
 
   // FAQ structured data
   const jsonLd = {
@@ -71,16 +75,23 @@ export default function ProjectCostPage({ params }) {
         </p>
       )}
 
-      <div className="tablecard">
-        <table>
-          <tbody>
-            <tr><td>Typical national cost</td><td className="num"><strong>{fmtMoney(cost)}</strong></td></tr>
-            <tr><td>Typical range</td><td className="num">{fmtMoney(cost * 0.85)} – {fmtMoney(cost * 1.15)}</td></tr>
-            <tr><td>Resale value added</td><td className="num">{fmtMoney(valueAdded)}</td></tr>
-            <tr><td>Cost recouped (ROI)</td><td className="num"><span className={`pill ${roiPill}`}>{Math.round(roi)}%</span></td></tr>
-            <tr><td>{net < 0 ? "Net value gain after resale" : "Net cost after resale"}</td><td className="num">{net < 0 ? "+" + fmtMoney(-net) : fmtMoney(net)}</td></tr>
-          </tbody>
-        </table>
+      <div className="result" style={{ marginTop: 18 }}>
+        <div className="proj-head">
+          <span className="proj-emblem"><ProjectIcon slug={p.slug} size={24} /></span>
+          <span className="label">Typical national cost</span>
+        </div>
+        <div className="cost">{fmtMoney(cost)}</div>
+        <div className="range">Typical range {fmtMoney(cost * 0.85)} – {fmtMoney(cost * 1.15)}</div>
+        <span className={`verdict-pill vp-${t}`}>{v.pill}</span>
+        <div className="meter">
+          <div className="meter-top"><span className="k">Cost recouped at resale</span><span className="pct">{Math.round(roi)}%</span></div>
+          <div className="meter-track"><div className={`meter-fill mf-${t}`} style={{ width: `${meterW}%` }} /></div>
+          <div className="meter-caption">{v.text}</div>
+        </div>
+        <div className="result-stats">
+          <div className="s"><div className="k">Resale value added</div><div className="v">{fmtMoney(valueAdded)}</div></div>
+          <div className="s"><div className="k">{net < 0 ? "Net value gain" : "Net cost after resale"}</div><div className="v">{net < 0 ? "+" + fmtMoney(-net) : fmtMoney(net)}</div></div>
+        </div>
       </div>
       <p className="hint" style={{ color: "var(--muted)", fontSize: 13, marginTop: -6 }}>
         {net < 0
@@ -98,6 +109,8 @@ export default function ProjectCostPage({ params }) {
       <h2>{p.name} cost by region</h2>
       <p>Costs vary by market. These are midrange estimates adjusted for regional price levels — always confirm with local quotes.</p>
       {(() => {
+        const groups = {};
+        REGIONS.forEach((rg) => { (groups[rg.country] = groups[rg.country] || []).push(rg); });
         const row = (rg) => {
           const c = calc(p, "midrange", 1, rg.costMult);
           return (
@@ -108,22 +121,33 @@ export default function ProjectCostPage({ params }) {
             </tr>
           );
         };
-        const head = (
-          <thead><tr><th>Location</th><th className="num">Estimated cost</th><th className="num">Recouped</th></tr></thead>
-        );
         return (
           <>
-            <div className="tablecard">
-              <table>{head}<tbody>{REGIONS.slice(0, 8).map(row)}</tbody></table>
-            </div>
-            {REGIONS.length > 8 && (
-              <details className="disc-d">
-                <summary>Show all {REGIONS.length} locations</summary>
-                <div className="dd-body">
-                  <table>{head}<tbody>{REGIONS.slice(8).map(row)}</tbody></table>
+            {Object.entries(groups).map(([country, list]) => (
+              <div key={country} className="region-group">
+                <div className="region-country">{country}</div>
+                <div className="region-chips">
+                  {list.map((rg) => {
+                    const c = calc(p, "midrange", 1, rg.costMult);
+                    return (
+                      <Link key={rg.slug} className="region-chip" href={`/cost/${p.slug}/${rg.slug}/`}>
+                        <span className="rc-city">{rg.label}</span>
+                        <span className="rc-cost">{fmtMoney(c.cost, rg.sym, rg.fx)}</span>
+                      </Link>
+                    );
+                  })}
                 </div>
-              </details>
-            )}
+              </div>
+            ))}
+            <details className="disc-d">
+              <summary>Full cost-by-location table (with ROI)</summary>
+              <div className="dd-body">
+                <table>
+                  <thead><tr><th>Location</th><th className="num">Estimated cost</th><th className="num">Recouped</th></tr></thead>
+                  <tbody>{REGIONS.map(row)}</tbody>
+                </table>
+              </div>
+            </details>
           </>
         );
       })()}

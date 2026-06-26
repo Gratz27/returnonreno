@@ -1,9 +1,10 @@
 import Calculator from "./components/Calculator";
+import HeroArt from "./components/HeroArt";
 
 export const metadata = {
   title: "Renovation Cost & ROI Calculator",
   description:
-    "Estimate what a home renovation costs and how much you get back at resale. Free, no sign-up — compare 15+ projects by ROI.",
+    "Estimate what a home renovation costs and how much you get back at resale. Free, no sign-up — compare 24 projects by ROI.",
   alternates: { canonical: "/" },
   openGraph: { url: "/" },
 };
@@ -11,14 +12,17 @@ export const metadata = {
 export default function Home() {
   return (
     <>
-      <section className="hero">
-        <span className="badge">● Free · No sign-up · Updated 2026</span>
-        <h1>What will your renovation cost — and how much do you get back?</h1>
-        <p>
-          Estimate the price of a home improvement project <strong>and</strong> how much of that cost you
-          recoup in added resale value. Most calculators only tell you the spend. This one tells you the{" "}
-          <em>return</em>.
-        </p>
+      <section className="hero hero-wrap">
+        <div className="hero-text">
+          <span className="badge">● Free · No sign-up · Updated 2026</span>
+          <h1>What will your renovation cost — and how much do you get back?</h1>
+          <p>
+            Estimate the price of a home improvement project <strong>and</strong> how much of that cost you
+            recoup in added resale value. Most calculators only tell you the spend. This one tells you the{" "}
+            <em>return</em>.
+          </p>
+        </div>
+        <div className="hero-art"><HeroArt /></div>
       </section>
 
       {/* AdSense Auto Ads (loaded in layout) place units automatically — no manual ad slots needed. */}
