@@ -1,7 +1,11 @@
 import "./globals.css";
+import { Fraunces, Inter } from "next/font/google";
 import Script from "next/script";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
+
+const fraunces = Fraunces({ subsets: ["latin"], variable: "--font-fraunces", display: "swap" });
+const inter = Inter({ subsets: ["latin"], variable: "--font-inter", display: "swap" });
 
 const ADSENSE_CLIENT = "ca-pub-3275113356221002";
 const GA_ID = process.env.NEXT_PUBLIC_GA_ID; // set in Netlify → Site settings → Environment variables
@@ -33,7 +37,7 @@ export const viewport = { themeColor: "#0b6b52" };
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
+    <html lang="en" className={`${fraunces.variable} ${inter.variable}`}>
       <body>
         <Header />
         <main className="wrap">{children}</main>

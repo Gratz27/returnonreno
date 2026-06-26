@@ -97,23 +97,36 @@ export default function ProjectCostPage({ params }) {
 
       <h2>{p.name} cost by region</h2>
       <p>Costs vary by market. These are midrange estimates adjusted for regional price levels — always confirm with local quotes.</p>
-      <div className="tablecard">
-        <table>
+      {(() => {
+        const row = (rg) => {
+          const c = calc(p, "midrange", 1, rg.costMult);
+          return (
+            <tr key={rg.slug}>
+              <td><Link href={`/cost/${p.slug}/${rg.slug}/`}>{rg.label}</Link></td>
+              <td className="num">{fmtMoney(c.cost, rg.sym, rg.fx)}</td>
+              <td className="num">{Math.round(c.roi)}%</td>
+            </tr>
+          );
+        };
+        const head = (
           <thead><tr><th>Location</th><th className="num">Estimated cost</th><th className="num">Recouped</th></tr></thead>
-          <tbody>
-            {REGIONS.map((rg) => {
-              const c = calc(p, "midrange", 1, rg.costMult);
-              return (
-                <tr key={rg.slug}>
-                  <td><Link href={`/cost/${p.slug}/${rg.slug}/`}>{rg.label}</Link></td>
-                  <td className="num">{fmtMoney(c.cost, rg.sym, rg.fx)}</td>
-                  <td className="num">{Math.round(c.roi)}%</td>
-                </tr>
-              );
-            })}
-          </tbody>
-        </table>
-      </div>
+        );
+        return (
+          <>
+            <div className="tablecard">
+              <table>{head}<tbody>{REGIONS.slice(0, 8).map(row)}</tbody></table>
+            </div>
+            {REGIONS.length > 8 && (
+              <details className="disc-d">
+                <summary>Show all {REGIONS.length} locations</summary>
+                <div className="dd-body">
+                  <table>{head}<tbody>{REGIONS.slice(8).map(row)}</tbody></table>
+                </div>
+              </details>
+            )}
+          </>
+        );
+      })()}
 
       <h2>Estimate your own {p.name.toLowerCase()}</h2>
       <p>Adjust the finish level, scope and currency to get a figure for your situation.</p>
