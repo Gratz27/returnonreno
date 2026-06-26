@@ -17,6 +17,7 @@ export default function Header() {
           <Link href="/">Calculator</Link>
           <Link href="/cost/">Project costs</Link>
           <Link href="/guides/">Guides</Link>
+          <Link href="/calculators/">Tools</Link>
           <Link href="/about/">About</Link>
         </nav>
       </div>

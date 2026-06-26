@@ -174,6 +174,15 @@ input[type=range]{flex:1;accent-color:var(--accent)}
 .cmp-row .bar span{display:block;height:100%;border-radius:var(--pill);transition:width .6s cubic-bezier(.4,0,.2,1)}
 .cmp-sub{font-size:12.5px;color:var(--muted);margin-top:6px}
 
+/* labour / materials split */
+.split{margin-top:12px}
+.split-bar{display:flex;height:12px;border-radius:var(--pill);overflow:hidden;background:var(--line-soft)}
+.split-bar span{display:block;height:100%}
+.split-labor{background:var(--accent)}
+.split-mat{background:#c2cec8}
+.split-legend{display:flex;gap:16px;flex-wrap:wrap;margin-top:8px;font-size:12.5px;color:var(--muted)}
+.split-legend span{display:inline-flex;align-items:center;gap:6px}
+
 /* details / collapses */
 details.disc-d{border:1px solid var(--line);border-radius:var(--r);background:var(--card);margin:14px 0;overflow:hidden}
 details.disc-d>summary{cursor:pointer;font-weight:500;font-size:14.5px;padding:14px 16px;list-style:none;display:flex;justify-content:space-between;align-items:center;color:var(--ink)}

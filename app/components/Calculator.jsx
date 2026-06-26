@@ -5,6 +5,7 @@ import { PROJECTS, TIERS, calc } from "../lib/projects";
 import { CURRENCIES } from "../lib/regions";
 import { tierOf, verdictFor } from "../lib/roi";
 import ProjectIcon from "./ProjectIcon";
+import CostSplit from "./CostSplit";
 
 function fmtK(usd, c) {
   let v = usd * c.fx;
@@ -267,6 +268,11 @@ export default function Calculator({ initialProject = "minor-kitchen-remodel", s
               {r.net < 0
                 ? "“Net value gain” = resale value added beyond what the project costs."
                 : "“Net cost” = cost − resale value added: the part you don't recoup at sale, not a loss."}
+            </div>
+
+            <div style={{ marginTop: 16, paddingTop: 16, borderTop: "1px solid var(--line)" }}>
+              <div className="label">Cost breakdown</div>
+              <CostSplit costUSD={r.cost} slug={project.slug} fmt={(u) => fmtK(u, cur)} />
             </div>
 
             <div className="actions">

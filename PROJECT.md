@@ -97,6 +97,7 @@ git add -A && git commit -m "..." && git push
 - [ ] Grow content (more cities, projects, guides) — see ROADMAP
 
 ## 9. Changelog (high level)
+- **26 Jun 2026** — Labour/materials cost split (calculator + project pages); three adjacent finance tools (renovation budget, home equity/borrowing power, renovation loan payment) under /calculators + Tools nav.
 - **26 Jun 2026** — Competitor audit; Tier 1 calculator tools (compare/split-budget mode, custom-quote override, shareable links); Guides hub + 3 new guides + Renovation ROI Index data study; embeddable widget (/embed.html); nav adds Guides; project counts made dynamic.
 - **26 Jun 2026** — Visual redesign (see docs/DESIGN-AUDIT.md): Phase 1 warm palette + Fraunces/Inter type, result module + ROI bars, mobile collapses; Phase 2 icon-chip project picker, motion, sticky mobile bar; Phase 3 hero illustration, visual project-page heroes, country-grouped regional cost chips.
 - **25 Jun 2026** — Submitted to Google Search Console (domain verified via DNS TXT, sitemap.xml submitted) and AdSense (site added; ads.txt confirmed live). Awaiting Google indexing/review. Added project hub (PROJECT/MAINTENANCE/ROADMAP) + 4 scheduled maintenance tasks.

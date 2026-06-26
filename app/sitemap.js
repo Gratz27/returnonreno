@@ -9,6 +9,7 @@ export default function sitemap() {
     "", "cost",
     "guides", "guides/best-home-improvements-roi", "guides/renovation-roi-index",
     "guides/kitchen-vs-bathroom-roi", "guides/does-a-pool-add-value", "guides/renovate-to-sell-checklist",
+    "calculators", "calculators/renovation-budget", "calculators/home-equity", "calculators/renovation-loan",
     "about", "contact", "privacy", "terms", "affiliate-disclosure",
   ].map((path) => ({
     url: `${BASE}/${path ? path + "/" : ""}`,

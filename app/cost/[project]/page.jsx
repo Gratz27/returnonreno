@@ -6,6 +6,7 @@ import { fmtMoney } from "../../lib/format";
 import { tierOf, verdictFor } from "../../lib/roi";
 import Calculator from "../../components/Calculator";
 import ProjectIcon from "../../components/ProjectIcon";
+import CostSplit from "../../components/CostSplit";
 
 // One static page per project at build time.
 export function generateStaticParams() {
@@ -91,6 +92,10 @@ export default function ProjectCostPage({ params }) {
         <div className="result-stats">
           <div className="s"><div className="k">Resale value added</div><div className="v">{fmtMoney(valueAdded)}</div></div>
           <div className="s"><div className="k">{net < 0 ? "Net value gain" : "Net cost after resale"}</div><div className="v">{net < 0 ? "+" + fmtMoney(-net) : fmtMoney(net)}</div></div>
+        </div>
+        <div style={{ marginTop: 16, paddingTop: 16, borderTop: "1px solid var(--line)" }}>
+          <div className="label">Cost breakdown</div>
+          <CostSplit costUSD={cost} slug={p.slug} fmt={(u) => fmtMoney(u)} />
         </div>
       </div>
       <p className="hint" style={{ color: "var(--muted)", fontSize: 13, marginTop: -6 }}>
