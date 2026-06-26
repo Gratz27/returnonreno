@@ -83,6 +83,7 @@ git add -A && git commit -m "..." && git push
 - `PROJECT.md` — this file (start here)
 - `docs/MAINTENANCE.md` — recurring maintenance schedule & checklists
 - `docs/ROADMAP.md` — improvement backlog / what's next
+- `docs/DESIGN-AUDIT.md` — visual/UX audit + redesign direction (Jun 2026)
 - `docs/SETUP-GUIDE-and-PETCOST-LEARNINGS.md` — original infra setup + PetCost learnings
 - `docs/EMAIL-RESEND-SETUP.md` — Resend + DNS email setup
 - `docs/website-opportunity-strategy.md` — the original strategy/opportunity report
