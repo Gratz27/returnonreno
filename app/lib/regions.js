@@ -48,6 +48,30 @@ export const REGIONS = [
     blurb: "Melbourne sits near the Australian average, with a large contractor base helping keep pricing competitive relative to Sydney." },
   { slug: "auckland-nz", label: "Auckland, NZ", country: "New Zealand", currency: "NZD", sym: "NZ$", fx: 1.65, costMult: 1.08,
     blurb: "Auckland is New Zealand's most expensive renovation market, with high material import costs and strong demand for builders adding to project totals." },
+  // --- US metros (added 29 Jun 2026) ---
+  { slug: "washington-dc", label: "Washington, DC", country: "United States", currency: "USD", sym: "$", fx: 1.00, costMult: 1.13,
+    blurb: "Washington, DC sits well above the national average, with strong demand for skilled trades, a high cost of living, and historic-district and permitting requirements all adding to renovation budgets." },
+  { slug: "philadelphia", label: "Philadelphia, PA", country: "United States", currency: "USD", sym: "$", fx: 1.00, costMult: 1.15,
+    blurb: "Philadelphia runs noticeably above the national average, reflecting union labour, older row-home stock that complicates work, and city permitting that can lengthen project timelines." },
+  { slug: "minneapolis", label: "Minneapolis, MN", country: "United States", currency: "USD", sym: "$", fx: 1.00, costMult: 1.07,
+    blurb: "Minneapolis sits modestly above the national average, with a short building season concentrating demand on trades and cold-climate construction standards adding to costs." },
+  { slug: "austin", label: "Austin, TX", country: "United States", currency: "USD", sym: "$", fx: 1.00, costMult: 0.89,
+    blurb: "Austin runs below the national average thanks to lower labour rates and lighter regulation, though rapid growth has been steadily narrowing that affordability advantage." },
+  { slug: "dallas", label: "Dallas, TX", country: "United States", currency: "USD", sym: "$", fx: 1.00, costMult: 0.87,
+    blurb: "Dallas–Fort Worth is one of the more affordable large US markets, with competitive trades, low overheads, and looser permitting keeping renovation costs below the national average." },
+  // --- UK (added 29 Jun 2026) ---
+  { slug: "glasgow-uk", label: "Glasgow, UK", country: "United Kingdom", currency: "GBP", sym: "£", fx: 0.79, costMult: 0.89,
+    blurb: "Glasgow is one of the UK's more affordable major cities to renovate, with Scottish labour rates and overheads sitting well below London and the South East, broadly in line with the northern English cities." },
+  { slug: "bristol-uk", label: "Bristol, UK", country: "United Kingdom", currency: "GBP", sym: "£", fx: 0.79, costMult: 0.95,
+    blurb: "Bristol is the priciest city in the South West, running above the northern cities but still below London — strong demand and a tight trades market keep costs near the UK average." },
+  // --- Canada (added 29 Jun 2026) ---
+  { slug: "calgary-ca", label: "Calgary, CA", country: "Canada", currency: "CAD", sym: "C$", fx: 1.37, costMult: 0.97,
+    blurb: "Calgary sits just below Toronto on cost, with renovation pricing influenced by the energy sector's pull on skilled trades and material freight from larger supply hubs." },
+  { slug: "montreal-ca", label: "Montreal, CA", country: "Canada", currency: "CAD", sym: "C$", fx: 1.37, costMult: 0.90,
+    blurb: "Montreal is the most affordable of Canada's big metros for renovation, with lower labour rates than Toronto or Vancouver, though permitting and language-of-trade logistics can add time." },
+  // --- Australia (added 29 Jun 2026) ---
+  { slug: "brisbane-au", label: "Brisbane, AU", country: "Australia", currency: "AUD", sym: "A$", fx: 1.52, costMult: 1.05,
+    blurb: "Brisbane has climbed above Melbourne on renovation cost, with post-flood rebuilding, interstate migration, and 2032 Olympics infrastructure all competing for the same pool of licensed trades." },
 ];
 
 // Currency-only options for the homepage calculator (region cost level applied separately).
