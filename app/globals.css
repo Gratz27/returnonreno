@@ -242,3 +242,12 @@ footer .links a{text-decoration:none}
   *{transition:none !important;animation:none !important}
   header.site{position:static}
 }
+
+/* Deep project content: cost drivers + FAQs (added 29 Jun 2026) */
+.cost-drivers{margin:14px 0;display:grid;gap:10px}
+.cost-driver{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:12px 15px}
+.cost-driver dt{margin:0 0 2px}
+.cost-driver dd{margin:0;color:var(--muted);font-size:14px}
+.faq-item{margin:0 0 14px}
+.faq-q{font-size:16px;margin:0 0 4px}
+.faq-a{margin:0;color:var(--muted)}

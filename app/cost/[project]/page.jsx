@@ -55,6 +55,12 @@ export default function ProjectCostPage({ params }) {
           text: `It recoups about ${Math.round(roi)}% of its cost at resale on average, adding roughly ${fmtMoney(valueAdded)} in value for a ${fmtMoney(cost)} project.`,
         },
       },
+      // Extra project-specific FAQs (deep content) extend the FAQPage schema.
+      ...((p.deep?.faqs || []).map((f) => ({
+        "@type": "Question",
+        name: f.q,
+        acceptedAnswer: { "@type": "Answer", text: f.a },
+      }))),
     ],
   };
 
@@ -104,12 +110,58 @@ export default function ProjectCostPage({ params }) {
           : "“Net cost after resale” = project cost − resale value added. It's the part you don't recoup at sale, not a loss — most renovations cost more than they return, with the difference buying you the use and enjoyment of the upgrade."}
       </p>
 
+      {p.deep && (
+        <>
+          <h2>How much does a {p.name.toLowerCase()} cost in 2026?</h2>
+          {p.deep.intro.map((para, i) => <p key={i}>{para}</p>)}
+          {p.deep.table && (
+            <table>
+              <thead>
+                <tr>
+                  <th>{p.deep.table.col}</th>
+                  <th className="num">Typical installed cost</th>
+                  <th>Notes</th>
+                </tr>
+              </thead>
+              <tbody>
+                {p.deep.table.rows.map((r) => (
+                  <tr key={r.type}>
+                    <td>{r.type}</td>
+                    <td className="num">{r.range}</td>
+                    <td style={{ color: "var(--muted)" }}>{r.note}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          )}
+          {p.deep.table && (
+            <p className="hint" style={{ color: "var(--muted)", fontSize: 13 }}>
+              Ranges are 2026 US market figures compiled from industry cost guides; your local quote depends on size, finish and labour rates.
+            </p>
+          )}
+        </>
+      )}
+
       <h2>What a {p.name.toLowerCase()} typically includes</h2>
       <ul>
         {p.includes.map((i) => <li key={i}>{i}</li>)}
       </ul>
 
       <blockquote><strong>Pro tip:</strong> {p.tip}</blockquote>
+
+      {p.deep?.drivers && (
+        <>
+          <h2>What affects the cost</h2>
+          <dl className="cost-drivers">
+            {p.deep.drivers.map((d) => (
+              <div key={d.factor} className="cost-driver">
+                <dt><strong>{d.factor}</strong></dt>
+                <dd>{d.detail}</dd>
+              </div>
+            ))}
+          </dl>
+        </>
+      )}
 
       <h2>{p.name} cost by region</h2>
       <p>Costs vary by market. These are midrange estimates adjusted for regional price levels — always confirm with local quotes.</p>
@@ -156,6 +208,29 @@ export default function ProjectCostPage({ params }) {
           </>
         );
       })()}
+
+      {p.deep?.faqs && (
+        <>
+          <h2>Frequently asked questions</h2>
+          {p.deep.faqs.map((f) => (
+            <div key={f.q} className="faq-item">
+              <h3 className="faq-q">{f.q}</h3>
+              <p className="faq-a">{f.a}</p>
+            </div>
+          ))}
+        </>
+      )}
+
+      {p.deep?.related && (
+        <>
+          <h2>Related cost guides</h2>
+          <ul>
+            {p.deep.related.map((r) => (
+              <li key={r.href}><Link href={r.href}>{r.label}</Link></li>
+            ))}
+          </ul>
+        </>
+      )}
 
       <h2>Estimate your own {p.name.toLowerCase()}</h2>
       <p>Adjust the finish level, scope and currency to get a figure for your situation.</p>

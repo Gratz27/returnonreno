@@ -22,6 +22,41 @@ export const PROJECTS = [
     blurb: "Updating an existing bathroom with new fixtures, tiling, vanity and lighting. A clean, modern bathroom removes a common buyer objection and returns a solid share of its cost.",
     includes: ["New vanity, sink and faucet", "Tub or shower replacement", "Tiling and waterproofing", "Toilet, lighting and ventilation", "Fresh paint and fittings"],
     tip: "Neutral, timeless finishes appeal to the widest pool of buyers and age better than bold trends.",
+    deep: {
+      intro: [
+        "A bathroom remodel is one of the most-searched renovation costs — and one of the most variable. In 2026 the national average lands around $16,500, but the realistic range runs from about $3,200 for a small cosmetic refresh to $30,000+ for a full or primary-bath gut renovation. Most projects work out to roughly $150–$400 per square foot.",
+        "The figure shown above reflects a mid-to-upscale full-bath remodel — in line with the higher end of national “Cost vs. Value” data — so a simple update of an existing bathroom usually costs less. The biggest single lever is whether you move the plumbing: keeping the toilet, tub and sink where they are can save thousands, because labour alone is typically 40–60% of a bathroom budget.",
+      ],
+      table: {
+        caption: "Bathroom remodel cost by size & scope (2026)",
+        col: "Scope",
+        rows: [
+          { type: "Half / small bath (cosmetic refresh)", range: "$3,200–$7,000", note: "New vanity, toilet, fixtures and paint; no layout change." },
+          { type: "Small full bath (5×8, mid-range)", range: "$7,200–$15,000", note: "New tub or shower, tile, vanity and lighting." },
+          { type: "Standard full bath (mid-range)", range: "$16,000–$28,000", note: "Full fixtures, tiling and some layout updates." },
+          { type: "Primary / master bath (mid-range)", range: "$29,000–$50,000", note: "Larger footprint, double vanity, walk-in shower or soaking tub." },
+          { type: "High-end / spa renovation", range: "$51,000–$80,000+", note: "Premium finishes, heated floors, custom glass and stone." },
+        ],
+      },
+      drivers: [
+        { factor: "Size & layout", detail: "A bigger room means more tile, more fixtures and more labour — square footage is the starting point for any estimate." },
+        { factor: "Moving plumbing", detail: "Relocating the toilet, shower or sink can add thousands; keeping the existing layout is the single biggest saving." },
+        { factor: "Tile & finishes", detail: "Material choice swings the budget widely — porcelain and stone, glass enclosures and custom vanities all add up fast." },
+        { factor: "Labour", detail: "Typically 40–60% of the total. In 2026 licensed plumbers run about $85–$175/hr and electricians about $60–$145/hr." },
+        { factor: "Hidden issues", detail: "Water damage behind tile, old wiring or non-standard sizing can surface mid-project — budget a 10–15% contingency." },
+      ],
+      faqs: [
+        { q: "What's the average bathroom remodel cost in 2026?", a: "About $16,500 nationally, with most homeowners spending between $8,000 and $45,000 depending on the bathroom's size, the finish level and local labour rates." },
+        { q: "Does a bathroom remodel add value?", a: "Yes — an updated bathroom recoups roughly 74% of its cost on average and removes one of the most common buyer objections. It's one of the more reliable resale projects, though it rarely pays for itself outright." },
+        { q: "How can I cut the cost?", a: "Keep the existing layout so you don't move plumbing, reglaze the tub rather than replacing it, choose mid-range tile over stone, and do the cosmetic work (paint, hardware, mirror, lighting) yourself where you can." },
+        { q: "Should I remodel or add a bathroom?", a: "Remodelling an existing bathroom returns more per dollar. Adding a brand-new bathroom costs more and recoups a smaller share — see the bathroom addition cost guide to compare." },
+      ],
+      related: [
+        { href: "/cost/bathroom-addition/", label: "Bathroom addition cost" },
+        { href: "/guides/kitchen-vs-bathroom-roi/", label: "Kitchen vs bathroom: which has better ROI?" },
+        { href: "/cost/whole-home-cosmetic-refresh/", label: "Whole-home cosmetic refresh cost" },
+      ],
+    },
   },
   {
     slug: "bathroom-addition", name: "Bathroom addition", baseUSD: 60000, roi: 50,
@@ -52,6 +87,40 @@ export const PROJECTS = [
     blurb: "Swapping an old garage door for a modern, insulated one. Consistently the single best-returning project: cheap, highly visible from the street, and a strong signal that the home is maintained.",
     includes: ["New insulated garage door", "Hardware and tracks", "Opener compatibility check", "Removal and disposal of old door"],
     tip: "If you do only one thing before selling, do this — it routinely recoups more than it costs.",
+    deep: {
+      intro: [
+        "A new garage door is one of the cheapest exterior upgrades you can make — and the single best-returning project in this whole index, routinely recouping more than it costs at resale. For a standard insulated steel door, most homeowners pay roughly $1,000–$1,800 installed in 2026; a double-wide door runs about $1,800–$3,200, while premium wood, glass or custom carriage-style doors can reach $5,000–$6,000 or more.",
+        "The figure shown above reflects an upscale 16×7 ft door — the basis for national “Cost vs. Value” resale data — so treat it as the higher end of a typical replacement rather than the floor. Because the door is large, street-facing and the first thing buyers see, it punches far above its price on curb appeal, which is why it recoups more of its cost than almost anything else you can do.",
+      ],
+      table: {
+        caption: "Garage door cost by material (installed, 2026)",
+        col: "Material",
+        rows: [
+          { type: "Steel (insulated)", range: "$800–$2,500", note: "Most popular — best balance of price, durability and insulation." },
+          { type: "Aluminum", range: "$600–$2,900", note: "Lightweight and rust-resistant; good for coastal or humid areas." },
+          { type: "Wood / wood-composite", range: "$1,500–$5,000", note: "Premium carriage-house look; needs periodic refinishing." },
+          { type: "Glass / full-view", range: "$700–$4,500", note: "Modern aluminium-and-glass; price climbs with the glazing." },
+        ],
+      },
+      drivers: [
+        { factor: "Single vs double", detail: "A double-wide door uses far more material and a longer install — roughly $1,800–$3,200 versus $1,000–$1,800 for a single." },
+        { factor: "Insulation", detail: "Insulated double- or triple-layer doors cost more upfront but cut energy loss on attached garages and run quieter." },
+        { factor: "Material & style", detail: "Steel is the value pick; wood, glass and custom carriage doors add a premium of hundreds to thousands." },
+        { factor: "Hardware & opener", detail: "New tracks, springs, a smart opener and keypad can add $150–$600+." },
+        { factor: "Labour & removal", detail: "Installation labour typically runs $250–$600, including hauling away the old door." },
+      ],
+      faqs: [
+        { q: "Why does a garage door have such a high ROI?", a: "It is large, highly visible from the street, and cheap relative to the lift it gives curb appeal — and it signals a well-maintained home. National Cost vs. Value data consistently ranks garage-door replacement at or near the top for share of cost recouped." },
+        { q: "Is an insulated door worth it?", a: "For an attached or heated garage, yes — it reduces energy loss and noise and is what buyers expect. For a detached, unheated garage the payback is smaller, so a basic door can make sense." },
+        { q: "Single or double — which should I replace?", a: "Replace what you already have. Matching the existing opening avoids structural changes; widening or adding an opening adds significant cost." },
+        { q: "Can I just repair the panels instead?", a: "Dented sections can sometimes be replaced individually, but a full replacement is what drives the resale value, energy savings and the “new” look buyers respond to." },
+      ],
+      related: [
+        { href: "/cost/entry-door-replacement/", label: "Entry door replacement cost" },
+        { href: "/cost/curb-appeal-landscaping/", label: "Curb-appeal landscaping cost" },
+        { href: "/cost/manufactured-stone-veneer/", label: "Manufactured stone veneer cost" },
+      ],
+    },
   },
   {
     slug: "entry-door-replacement", name: "Entry door replacement (steel)", baseUSD: 2400, roi: 150,
